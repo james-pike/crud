@@ -17,8 +17,6 @@ interface Workshop {
 export default component$(() => {
   const currentIndex = useSignal(0);
   const isAutoPlaying = useSignal(true);
-  const isDragging = useSignal(false);
-  const startX = useSignal(0);
 
   const workshops: Workshop[] = [
     {
@@ -102,35 +100,6 @@ export default component$(() => {
 
   const stopAutoPlay = $(() => {
     isAutoPlaying.value = false;
-  });
-
-  // Touch/swipe functionality for mobile
-  const handleTouchStart = $((event: TouchEvent) => {
-    isDragging.value = true;
-    startX.value = event.touches[0].pageX;
-    stopAutoPlay();
-  });
-
-  const handleTouchMove = $((event: TouchEvent) => {
-    if (!isDragging.value) return;
-    event.preventDefault();
-    const x = event.touches[0].pageX;
-    const walk = (startX.value - x) * 2;
-    
-    if (walk > 50) {
-      // Swipe left - next slide
-      nextSlide();
-      isDragging.value = false;
-    } else if (walk < -50) {
-      // Swipe right - previous slide
-      prevSlide();
-      isDragging.value = false;
-    }
-  });
-
-  const handleTouchEnd = $(() => {
-    isDragging.value = false;
-    startAutoPlay();
   });
 
   // Auto-advance slides - only run on client
@@ -271,12 +240,7 @@ export default component$(() => {
 
           {/* Mobile Scrollable Carousel */}
           <div class="md:hidden">
-            <div 
-              class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4"
-              onTouchstart$={handleTouchStart}
-              onTouchmove$={handleTouchMove}
-              onTouchend$={handleTouchEnd}
-            >
+            <div class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4">
               {workshops.map((workshop) => (
                 <div key={workshop.id} class="flex-shrink-0 w-80 snap-center mr-6 last:mr-0">
                   <div class="bg-gradient-to-br from-white via-sage-50/30 to-clay-50/30 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border-2 border-clay-200/50">
