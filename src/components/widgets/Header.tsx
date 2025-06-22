@@ -16,9 +16,9 @@ export default component$(() => {
   return (
     <header
       id="header"
-      class={`sticky top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out ${
+      class={`sticky top-0 z-40 flex-none mx-auto w-full border-b border-clay-100/0 transition-all duration-300 ease-in-out ${
         store.isScrolling
-          ? " md:bg-white/90 md:backdrop-blur-sm dark:md:bg-slate-900/90 bg-white dark:bg-slate-900"
+          ? " md:bg-white/95 md:backdrop-blur-md dark:md:bg-clay-900/95 bg-white dark:bg-clay-900 border-clay-200/20 dark:border-clay-700/20 shadow-lg"
           : ""
       }`}
       window:onScroll$={() => {
@@ -32,7 +32,7 @@ export default component$(() => {
       <div class="absolute inset-0"></div>
       <div class="relative text-default py-3 px-3 md:px-6 mx-auto w-full md:flex md:justify-between max-w-7xl">
         <div class="mr-auto rtl:mr-0 rtl:ml-auto flex justify-between">
-          <a class="flex items-center" href={"/"}>
+          <a class="flex items-center group" href={"/"}>
             <Logo />
           </a>
           <div class="flex items-center md:hidden">
@@ -50,14 +50,14 @@ export default component$(() => {
                 <li key={key} class={items?.length ? "dropdown" : ""}>
                   {items?.length ? (
                     <>
-                      <button class="hover:text-link dark:hover:text-white px-4 py-3 flex items-center">
+                      <button class="hover:text-clay-600 dark:hover:text-clay-300 px-4 py-3 flex items-center transition-colors duration-200">
                         {text} <IconChevronDown class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                       </button>
-                      <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-slate-800 rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:min-w-[200px] drop-shadow-xl">
+                      <ul class="dropdown-menu md:backdrop-blur-md dark:md:bg-clay-800 rounded-lg md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white/95 md:min-w-[200px] drop-shadow-xl border border-clay-100 dark:border-clay-700">
                         {items.map(({ text: text2, href: href2 }, key2) => (
                           <li key={key2}>
                             <a
-                              class="first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap"
+                              class="first:rounded-t-lg last:rounded-b-lg md:hover:bg-clay-50 hover:text-clay-600 dark:hover:text-clay-300 dark:hover:bg-clay-700/50 py-2 px-5 block whitespace-no-wrap transition-colors duration-200"
                               href={href2}
                             >
                               {text2}
@@ -67,7 +67,7 @@ export default component$(() => {
                       </ul>
                     </>
                   ) : (
-                    <a class="hover:text-link dark:hover:text-white px-4 py-3 flex items-centers" href={href}>
+                    <a class="hover:text-clay-600 dark:hover:text-clay-300 px-4 py-3 flex items-centers transition-colors duration-200" href={href}>
                       {text}
                     </a>
                   )}
@@ -83,10 +83,11 @@ export default component$(() => {
             </div>
             <span class="ml-4 rtl:ml-0 rtl:mr-4">
               <a
-                href="https://github.com/onwidget/qwind"
-                class="btn btn-primary ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto"
+                href="#collection"
+                class="group relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-clay-600 to-clay-700 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
               >
-                Download
+                <span class="relative z-10">Shop Now</span>
+                <div class="absolute inset-0 bg-gradient-to-r from-clay-700 to-clay-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </a>
             </span>
           </div>

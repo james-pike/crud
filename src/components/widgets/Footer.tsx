@@ -9,86 +9,105 @@ import IconGithub from "~/components/icons/IconGithub"
 export default component$(() => {
   const links = [
     {
-      title: "Product",
+      title: "Collections",
       items: [
-        { title: "Features", href: "#" },
-        { title: "Security", href: "#" },
-        { title: "Team", href: "#" },
-        { title: "Enterprise", href: "#" },
-        { title: "Customer stories", href: "#" },
-        { title: "Pricing", href: "#" },
-        { title: "Resources", href: "#" },
+        { title: "Dinnerware", href: "#" },
+        { title: "Planters", href: "#" },
+        { title: "Vases", href: "#" },
+        { title: "Bakeware", href: "#" },
+        { title: "Decorative", href: "#" },
+        { title: "Custom Orders", href: "#" },
       ],
     },
     {
-      title: "Platform",
+      title: "About",
       items: [
-        { title: "Developer API", href: "#" },
-        { title: "Partners", href: "#" },
-        { title: "Atom", href: "#" },
-        { title: "Electron", href: "#" },
-        { title: "Qwind Desktop", href: "#" },
+        { title: "Our Story", href: "#" },
+        { title: "Artisans", href: "#" },
+        { title: "Techniques", href: "#" },
+        { title: "Materials", href: "#" },
+        { title: "Sustainability", href: "#" },
       ],
     },
     {
       title: "Support",
       items: [
-        { title: "Docs", href: "#" },
-        { title: "Community Forum", href: "#" },
-        { title: "Professional Services", href: "#" },
-        { title: "Skills", href: "#" },
-        { title: "Status", href: "#" },
+        { title: "Care Instructions", href: "#" },
+        { title: "Shipping Info", href: "#" },
+        { title: "Returns", href: "#" },
+        { title: "Contact Us", href: "#" },
+        { title: "FAQ", href: "#" },
       ],
     },
     {
-      title: "Company",
+      title: "Connect",
       items: [
-        { title: "About", href: "#" },
-        { title: "Blog", href: "#" },
-        { title: "Careers", href: "#" },
-        { title: "Press", href: "#" },
-        { title: "Inclusion", href: "#" },
-        { title: "Social Impact", href: "#" },
-        { title: "Shop", href: "#" },
+        { title: "Instagram", href: "#" },
+        { title: "Pinterest", href: "#" },
+        { title: "Newsletter", href: "#" },
+        { title: "Workshops", href: "#" },
+        { title: "Wholesale", href: "#" },
       ],
     },
   ];
 
   const social = [
-    { label: "Twitter", icon: IconTwitter, href: "#" },
     { label: "Instagram", icon: IconInstagram, href: "#" },
+    { label: "Pinterest", icon: IconFacebook, href: "#" },
     { label: "Facebook", icon: IconFacebook, href: "#" },
     {
-      label: "Github",
+      label: "Contact",
       icon: IconGithub,
-      href: "https://github.com/onwidget/qwind",
+      href: "#",
     },
   ];
 
   return (
-    <footer class="border-t border-gray-200 dark:border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <footer class="relative border-t border-clay-200 dark:border-clay-700 overflow-hidden">
+      {/* Background with pottery texture */}
+      <div class="absolute inset-0 bg-pottery-texture opacity-10" aria-hidden="true"></div>
+      
+      {/* Gradient background */}
+      <div class="absolute inset-0 bg-gradient-to-br from-clay-50/50 via-sage-50/30 to-earth-50/50" aria-hidden="true"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
           <div class="col-span-12 lg:col-span-4 pr-8">
-            <div class="mb-2">
-              <Link class="inline-block font-bold text-xl" href={"/"}>
-                Qwind
+            <div class="mb-4">
+              <Link class="inline-block font-bold text-xl font-serif" href={"/"}>
+                <span class="bg-gradient-to-r from-clay-600 to-sage-600 bg-clip-text text-transparent">
+                  Terra Pottery
+                </span>
               </Link>
             </div>
-            <div class="text-sm text-gray-600 dark:text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi
-              risus tempus nulla
+            <div class="text-sm text-sage-700 dark:text-sage-300 leading-relaxed">
+              Handcrafted pottery that brings the warmth of terracotta and the serenity of sage into your home. Each piece tells a story of earth, fire, and human creativity.
+            </div>
+            
+            {/* Newsletter signup */}
+            <div class="mt-6">
+              <h4 class="text-sm font-semibold text-clay-800 dark:text-clay-200 mb-3">Join our newsletter</h4>
+              <div class="flex">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  class="flex-1 px-4 py-2 text-sm border border-clay-200 dark:border-clay-600 rounded-l-full bg-white/80 dark:bg-clay-800/80 text-clay-900 dark:text-clay-100 placeholder-sage-500 focus:outline-none focus:ring-2 focus:ring-clay-500"
+                />
+                <button class="px-4 py-2 bg-gradient-to-r from-clay-600 to-clay-700 text-white text-sm font-medium rounded-r-full hover:from-clay-700 hover:to-clay-800 transition-all duration-200">
+                  Subscribe
+                </button>
+              </div>
             </div>
           </div>
           {links.map(({ title, items }, index) => (
             <div key={index} class="col-span-6 md:col-span-3 lg:col-span-2">
-              <div class="text-gray-800 dark:text-gray-300 font-medium mb-2">{title}</div>
+              <div class="text-clay-800 dark:text-clay-200 font-semibold mb-4">{title}</div>
               {Array.isArray(items) && items.length > 0 && (
-                <ul class="text-sm">
+                <ul class="text-sm space-y-2">
                   {items.map(({ title, href }, index2) => (
-                    <li key={index2} class="mb-2">
+                    <li key={index2}>
                       <Link
-                        class="text-gray-600 hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
+                        class="text-sage-700 hover:text-clay-600 dark:text-sage-300 dark:hover:text-clay-300 transition-colors duration-200 ease-in-out"
                         href={href}
                       >
                         {title}
@@ -100,12 +119,12 @@ export default component$(() => {
             </div>
           ))}
         </div>
-        <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
+        <div class="md:flex md:items-center md:justify-between py-6 md:py-8 border-t border-clay-200/50 dark:border-clay-700/50">
           <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0">
             {social.map(({ label, href, icon: Icon }, index) => (
               <li key={index}>
                 <Link
-                  class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                  class="text-sage-600 dark:text-sage-400 hover:bg-clay-100 dark:hover:bg-clay-700 focus:outline-none focus:ring-4 focus:ring-clay-200 dark:focus:ring-clay-700 rounded-lg text-sm p-2.5 inline-flex items-center transition-all duration-200"
                   aria-label={label}
                   title={label}
                   href={href}
@@ -116,14 +135,11 @@ export default component$(() => {
             ))}
           </ul>
 
-          <div class="text-sm text-gray-700 mr-4 dark:text-slate-400">
-            <span class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 float-left rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)]"></span>
-            Made by{" "}
-            <a class="text-secondary-800 underline dark:text-gray-200" href="https://onwidget.com/">
-              {" "}
-              onWidget
-            </a>{" "}
-            · All rights reserved.
+          <div class="text-sm text-sage-700 dark:text-sage-300">
+            <span class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 float-left rounded-sm bg-gradient-to-br from-clay-500 to-sage-500"></span>
+            Handcrafted with{" "}
+            <span class="text-clay-600 dark:text-clay-400">♥</span>{" "}
+            by Terra Pottery · All rights reserved.
           </div>
         </div>
       </div>

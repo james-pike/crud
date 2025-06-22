@@ -1,12 +1,12 @@
 export const SITE = {
-  name: "Qwind",
+  name: "Terra Pottery",
 
   title:
-    "Qwind — Free template for Qwik + Tailwind CSS to build your new website.",
+    "Terra Pottery — Handcrafted Ceramic Artistry with Earth's Natural Beauty",
   description:
-    "Qwind is a free and ready to start template to make your website using Qwik and Tailwind CSS.",
+    "Discover handcrafted pottery pieces that blend traditional techniques with modern design. Each piece tells a story of earth, fire, and human creativity.",
 
-  origin: "https://qwind.pages.dev",
+  origin: "https://terra-pottery.pages.dev",
   basePathname: "/",
   trailingSlash: true,
 };

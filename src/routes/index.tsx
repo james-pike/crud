@@ -23,43 +23,43 @@ export default component$(() => {
     <>
       <Hero />
       <Features
-        highlight="Features"
-        title="What you get with Qwind"
-        subtitle="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae."
+        highlight="Our Craft"
+        title="What Makes Our Pottery Special"
+        subtitle="Every piece in our collection is crafted with intention, using traditional techniques passed down through generations and sustainable materials that honor the earth."
         items={[
           {
-            title: "Qwik + Tailwind CSS Integration",
+            title: "Hand-Thrown Excellence",
             description:
-              "A seamless integration between two great frameworks that offer high productivity, performance and versatility.",
+              "Each piece is individually hand-thrown on the potter's wheel, ensuring unique character and perfect balance in every creation.",
             icon: IconBrandTailwind,
           },
           {
-            title: "Ready-to-use Components",
+            title: "Natural Materials",
             description:
-              "Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...",
+              "We use only the finest terracotta clay and natural glazes, sourced sustainably to create pieces that are both beautiful and eco-friendly.",
             icon: IconApps,
           },
           {
-            title: "Best Practices",
+            title: "Traditional Techniques",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.",
+              "Our artisans employ centuries-old pottery techniques, from coil building to slip trailing, ensuring each piece carries the weight of tradition.",
           },
           {
-            title: "Excellent Page Speed",
+            title: "Unique Character",
             description:
-              "Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.",
+              "No two pieces are exactly alike. The natural variations in clay, firing, and hand-finishing create one-of-a-kind works of functional art.",
             icon: IconRocket,
           },
           {
-            title: "Search Engine Optimization (SEO)",
+            title: "Sustainable Practices",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.",
+              "We prioritize eco-friendly practices, from using local clay sources to energy-efficient kilns, minimizing our environmental footprint.",
             icon: IconBrandGoogle,
           },
           {
-            title: "Open to new ideas and contributions",
+            title: "Timeless Design",
             description:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, quam nec venenatis lobortis, mi risus tempus nulla.",
+              "Our designs blend contemporary aesthetics with timeless appeal, creating pieces that will be cherished for generations to come.",
             icon: IconBulb
           },
         ]}
@@ -67,38 +67,38 @@ export default component$(() => {
       <Steps />
       <FAQs
         title="Frequently Asked Questions"
-        subtitle="Duis turpis dui, fringilla mattis sem nec, fringilla euismod neque. Morbi tincidunt lacus nec tortor scelerisque pulvinar."
+        subtitle="Learn more about our pottery, materials, and care instructions to help you make the most of your handcrafted pieces."
         highlight="FAQs"
         items={[
           {
-            title: "What do I need to start?",
+            title: "How do I care for my pottery?",
             description:
-              "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.",
+              "Our pottery is dishwasher safe, but we recommend hand washing to preserve the finish. Avoid extreme temperature changes and use mild soap. For decorative pieces, simply dust regularly with a soft cloth.",
           },
           {
-            title: "How to install the Qwik + Tailwind CSS template?",
+            title: "Are your pieces food safe?",
             description:
-              "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+              "Yes, all our functional pieces are food safe and lead-free. We use only food-grade glazes and fire our pottery to the proper temperature to ensure safety and durability.",
           },
           {
-            title: "What's something that you don't understand?",
+            title: "Can I use your pottery in the oven?",
             description:
-              "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+              "Most of our pieces are oven safe up to 350°F (175°C). However, we recommend checking the specific care instructions that come with each piece, as some decorative items may not be suitable for oven use.",
           },
           {
-            title: "What's an example of when you changed your mind?",
+            title: "Do you offer custom pieces?",
             description:
-              "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+              "Yes, we love creating custom pieces! Whether it's a special gift, wedding registry, or unique design, we work closely with you to bring your vision to life. Contact us to discuss your project.",
           },
           {
-            title: "What is something that you would like to try again?",
+            title: "What makes terracotta special?",
             description:
-              "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+              "Terracotta clay has been used for thousands of years due to its natural beauty, durability, and ability to retain heat. It's also porous, which helps regulate humidity and keeps food fresh longer.",
           },
           {
-            title: "If you could only ask one question to each person you meet, what would that question be?",
+            title: "How long does shipping take?",
             description:
-              "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+              "We carefully pack each piece to ensure safe delivery. Standard shipping takes 5-7 business days, while expedited shipping is available for 2-3 business days. International shipping varies by location.",
           },
         ]}
       />

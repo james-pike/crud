@@ -6,21 +6,23 @@
  *
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-md shadow-md border-gray-400 border bg-transparent font-medium text-center text-lg text-gray-700 leading-snug transition py-3 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-gray-100 hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800;
+    @apply inline-flex items-center justify-center rounded-md shadow-md border-clay-300 border bg-transparent font-medium text-center text-lg text-clay-700 leading-snug transition py-3 px-6 md:px-8 ease-in duration-200 focus:ring-clay-500 focus:ring-offset-clay-200 focus:ring-2 focus:ring-offset-2 hover:bg-clay-50 hover:border-clay-400 dark:text-clay-300 dark:border-clay-500 dark:hover:bg-clay-800 dark:hover:border-clay-700;
   }
 
   .btn-ghost {
-    @apply border-none shadow-none text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    @apply border-none shadow-none text-sage-600 hover:text-clay-900 dark:text-sage-400 dark:hover:text-clay-100;
   }
 
   .btn-primary {
-    @apply font-semibold bg-primary-600 text-white border-primary-600 hover:bg-primary-800 hover:border-primary-800 hover:text-white dark:text-white dark:bg-primary-700 dark:border-primary-700 dark:hover:border-primary-900 dark:hover:bg-primary-900;
+    @apply font-semibold bg-gradient-to-r from-clay-600 to-clay-700 text-white border-clay-600 hover:from-clay-700 hover:to-clay-800 hover:border-clay-700 hover:text-white dark:text-white dark:from-clay-700 dark:to-clay-800 dark:border-clay-700 dark:hover:from-clay-800 dark:hover:to-clay-900 dark:hover:border-clay-800;
   }
 
   [data-aw-toggle-menu] path {
