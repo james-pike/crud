@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useTask$, useOnWindow } from "@builder.io/qwik";
+import { component$, useSignal, $, useTask$} from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
 
 interface Workshop {
