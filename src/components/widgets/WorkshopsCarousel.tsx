@@ -43,8 +43,6 @@ export default component$(() => {
       spots: 6,
       level: "Advanced"
     },
-
-    //
     {
       id: 3,
       title: "Hand-Building Fundamentals",
