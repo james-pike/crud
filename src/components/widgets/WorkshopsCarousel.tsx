@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from "@builder.io/qwik";
+import { component$, useSignal, $, useTask$ } from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
 
 interface Workshop {
@@ -102,12 +102,20 @@ export default component$(() => {
     isAutoPlaying.value = false;
   });
 
-  // Auto-advance slides
-  setInterval(() => {
-    if (isAutoPlaying.value) {
-      nextSlide();
+  // Auto-advance slides - only run on client
+  useTask$(({ track, cleanup }) => {
+    track(() => isAutoPlaying.value);
+    
+    if (typeof window !== 'undefined') {
+      const interval = setInterval(() => {
+        if (isAutoPlaying.value) {
+          nextSlide();
+        }
+      }, 5000);
+
+      cleanup(() => clearInterval(interval));
     }
-  }, 5000);
+  });
 
   return (
     <section class="relative overflow-hidden py-16 md:py-20">
