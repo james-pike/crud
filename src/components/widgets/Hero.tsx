@@ -130,21 +130,23 @@ export default component$(() => {
                 . Discover our collection of handcrafted pottery that brings the warmth of terracotta and the serenity of sage into your home.
               </p>
 
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 lg:justify-start lg:m-0 lg:max-w-7xl">
-                <div class="flex w-full sm:w-auto">
-                  <a
-                    class="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-gradient-to-r from-clay-600 to-clay-700 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
-                    href="#collection"
-                  >
-                    <span class="relative z-10">Explore Collection</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-clay-700 to-clay-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </a>
-                </div>
-                <div class="flex w-full sm:w-auto">
-                  <button class="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-sage-700 bg-white/80 backdrop-blur-sm border border-sage-200 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-sage-50">
-                    <span class="relative z-10">Learn Our Story</span>
-                  </button>
-                </div>
+              <div class="flex flex-col items-center justify-center w-full gap-4 sm:flex-row sm:gap-4 max-w-xs sm:max-w-md lg:max-w-7xl mx-auto">
+                <a
+                  class="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-3 text-lg font-semibold font-serif text-white bg-gradient-to-r from-clay-600 to-clay-700 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden focus:outline-none focus:ring-2 focus:ring-clay-400"
+                  href="#collection"
+                >
+                  <span class="relative z-10 flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    Book a Workshop
+                  </span>
+                  <div class="absolute inset-0 bg-gradient-to-r from-clay-700 to-clay-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+                <button class="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-3 text-lg font-semibold font-serif text-sage-700 bg-white/80 backdrop-blur-sm border border-sage-200 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-sage-50 focus:outline-none focus:ring-2 focus:ring-sage-300">
+                  <span class="relative z-10 flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m0 0H3"></path></svg>
+                    Learn About Our Story
+                  </span>
+                </button>
               </div>
               
               {/* Feature highlights */}
