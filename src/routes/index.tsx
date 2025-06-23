@@ -25,6 +25,8 @@ export default component$(() => {
   return (
     <>
       <Hero />
+      <WorkshopsCarousel />
+
       <Features
         highlight="Our Craft"
         title="What Makes Our Pottery Special"
@@ -67,7 +69,6 @@ export default component$(() => {
           },
         ]}
       />
-      <WorkshopsCarousel />
       <Steps />
       <ReviewCarousel />
       <FAQAccordion />

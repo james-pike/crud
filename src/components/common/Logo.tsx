@@ -12,7 +12,7 @@ export default component$(() => (
       </div>
     </div>
     <span class="font-serif bg-gradient-to-r from-clay-600 to-sage-600 bg-clip-text text-transparent">
-      Terra Pottery
+      Earthen Vessels
     </span>
   </span>
 ));
