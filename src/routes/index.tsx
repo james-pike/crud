@@ -2,9 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
 import Hero from "~/components/widgets/Hero";
-import Features from "~/components/widgets/Features";
-import WorkshopsCarousel from "~/components/widgets/WorkshopsCarousel";
-import Steps from "~/components/widgets/Steps";
+
 import FAQAccordion from "~/components/widgets/FAQAccordion";
 import ReviewCarousel from "~/components/widgets/ReviewCarousel";
 import ContactSection from "~/components/widgets/ContactSection";
@@ -25,9 +23,9 @@ export default component$(() => {
   return (
     <>
       <Hero />
-      <WorkshopsCarousel />
+   
 
-      <Features
+      {/* <Features
         highlight="Our Craft"
         title="What Makes Our Pottery Special"
         subtitle="Every piece in our collection is crafted with intention, using traditional techniques passed down through generations and sustainable materials that honor the earth."
@@ -69,7 +67,7 @@ export default component$(() => {
           },
         ]}
       />
-      <Steps />
+      <Steps /> */}
       <ReviewCarousel />
       <FAQAccordion />
       <Stats />
