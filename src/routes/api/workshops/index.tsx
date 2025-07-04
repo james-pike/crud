@@ -6,7 +6,7 @@ const db = createClient({
   authToken: process.env.TURSO_AUTH_TOKEN,
 });
 
-//
+///
 
 export const onGet: RequestHandler = async ({ json }) => {
   const result = await db.execute('SELECT * FROM workshops');
