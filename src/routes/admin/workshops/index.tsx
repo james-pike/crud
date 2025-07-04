@@ -20,6 +20,7 @@ export default component$(() => {
     } finally {
       loading.value = false;
     }
+    //
   });
 
   // Handle form input changes
