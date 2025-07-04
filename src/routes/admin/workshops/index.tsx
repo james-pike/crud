@@ -1,4 +1,4 @@
-import { component$, useSignal, $, useTask$ } from '@builder.io/qwik';
+import { component$, useSignal, $ } from '@builder.io/qwik';
 import { routeLoader$, routeAction$ } from '@builder.io/qwik-city';
 import { getWorkshops, createWorkshop, updateWorkshop, deleteWorkshop } from '~/utils/workshops';
 import type { Workshop, CreateWorkshopRequest, UpdateWorkshopRequest } from '~/types';

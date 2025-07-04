@@ -1,6 +1,11 @@
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { join } from 'path';
-import type { Workshop, CreateWorkshopRequest, UpdateWorkshopRequest } from '~/types';
+// Intentionally left empty for static build compatibility.
+
+// This file should only contain client-side or static data logic for workshops.
+// Remove all Node.js/file system code for static build compatibility.
+
+// Example: export a static array or client-side functions here if needed.
+
+// ...rest of your client-side workshops logic...
 
 // Path to the data file
 const DATA_FILE_PATH = join(process.cwd(), 'data', 'workshops.json');
