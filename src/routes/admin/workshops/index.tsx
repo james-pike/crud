@@ -1,4 +1,4 @@
-import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$, $ } from '@builder.io/qwik';
 import type { Workshop } from '~/types';
 
 export default component$(() => {
@@ -23,12 +23,12 @@ export default component$(() => {
   });
 
   // Handle form input changes
-  const handleInput = (e: any) => {
+  const handleInput = $((e: any) => {
     form.value = { ...form.value, [e.target.name]: e.target.value };
-  };
+  });
 
   // Create or update workshop
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = $(async (e: any) => {
     e.preventDefault();
     if (editingId.value) {
       // Update
@@ -50,16 +50,16 @@ export default component$(() => {
     // Refresh list
     const res = await fetch('/api/workshops');
     workshops.value = await res.json();
-  };
+  });
 
   // Edit workshop
-  const handleEdit = (workshop: Workshop) => {
+  const handleEdit = $((workshop: Workshop) => {
     editingId.value = String(workshop.id);
     form.value = { ...workshop };
-  };
+  });
 
   // Delete workshop
-  const handleDelete = async (id: string) => {
+  const handleDelete = $(async (id: string) => {
     await fetch('/api/workshops', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
@@ -68,7 +68,7 @@ export default component$(() => {
     // Refresh list
     const res = await fetch('/api/workshops');
     workshops.value = await res.json();
-  };
+  });
 
   return (
     <div class="container mx-auto px-4 py-8">
@@ -97,7 +97,7 @@ export default component$(() => {
           <div class="md:col-span-2 flex gap-2">
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">{editingId.value ? 'Update' : 'Add'}</button>
             {editingId.value && (
-              <button type="button" class="bg-gray-400 text-white px-4 py-2 rounded" onClick$={() => { editingId.value = null; form.value = {}; }}>Cancel</button>
+              <button type="button" class="bg-gray-400 text-white px-4 py-2 rounded" onClick$={$(() => { editingId.value = null; form.value = {}; })}>Cancel</button>
             )}
           </div>
         </form>
