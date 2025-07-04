@@ -1,82 +1,116 @@
-import { component$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 import type { Workshop } from '~/types';
 
-const workshopsData: Workshop[] = [
-  {
-    id: 1,
-    title: "Introduction to Wheel Throwing",
-    description: "Learn the fundamentals of pottery wheel throwing in this hands-on workshop. Perfect for beginners who want to experience the magic of creating with clay.",
-    date: "March 15, 2024",
-    duration: "3 hours",
-    price: "$85",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    instructor: "Sarah Chen",
-    spots: 8,
-    level: "Beginner"
-  },
-  {
-    id: 2,
-    title: "Advanced Glazing Techniques",
-    description: "Master the art of glazing with advanced techniques including layering, wax resist, and creating unique surface textures.",
-    date: "March 22, 2024",
-    duration: "4 hours",
-    price: "$120",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    instructor: "Michael Rodriguez",
-    spots: 6,
-    level: "Advanced"
-  },
-  {
-    id: 3,
-    title: "Hand-Building Fundamentals",
-    description: "Discover the versatility of hand-building techniques including pinch pots, coil building, and slab construction.",
-    date: "March 29, 2024",
-    duration: "3.5 hours",
-    price: "$95",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    instructor: "Emma Thompson",
-    spots: 10,
-    level: "Beginner"
-  },
-  {
-    id: 4,
-    title: "Raku Firing Workshop",
-    description: "Experience the excitement of raku firing, a traditional Japanese technique that creates unique, unpredictable glaze effects.",
-    date: "April 5, 2024",
-    duration: "5 hours",
-    price: "$150",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    instructor: "David Kim",
-    spots: 4,
-    level: "Intermediate"
-  },
-  {
-    id: 5,
-    title: "Pottery for Kids",
-    description: "A fun, creative workshop designed specifically for children ages 8-12. Kids will learn basic hand-building techniques and create their own pottery masterpieces.",
-    date: "April 12, 2024",
-    duration: "2 hours",
-    price: "$65",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    instructor: "Lisa Park",
-    spots: 12,
-    level: "Beginner"
-  }
-];
-
 export default component$(() => {
-  const workshops = useSignal<Workshop[]>(workshopsData);
+  const workshops = useSignal<Workshop[]>([]);
+  const loading = useSignal(true);
+  const error = useSignal<string | null>(null);
+  const editingId = useSignal<string | null>(null);
+  const form = useSignal<Partial<Workshop>>({});
+
+  // Fetch workshops from API
+  useVisibleTask$(async () => {
+    loading.value = true;
+    try {
+      const res = await fetch('/api/workshops');
+      workshops.value = await res.json();
+      error.value = null;
+    } catch (e: any) {
+      error.value = 'Failed to load workshops.';
+    } finally {
+      loading.value = false;
+    }
+  });
+
+  // Handle form input changes
+  const handleInput = (e: any) => {
+    form.value = { ...form.value, [e.target.name]: e.target.value };
+  };
+
+  // Create or update workshop
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (editingId.value) {
+      // Update
+      await fetch('/api/workshops', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form.value, id: editingId.value }),
+      });
+    } else {
+      // Create
+      await fetch('/api/workshops', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form.value, id: crypto.randomUUID() }),
+      });
+    }
+    editingId.value = null;
+    form.value = {};
+    // Refresh list
+    const res = await fetch('/api/workshops');
+    workshops.value = await res.json();
+  };
+
+  // Edit workshop
+  const handleEdit = (workshop: Workshop) => {
+    editingId.value = String(workshop.id);
+    form.value = { ...workshop };
+  };
+
+  // Delete workshop
+  const handleDelete = async (id: string) => {
+    await fetch('/api/workshops', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    // Refresh list
+    const res = await fetch('/api/workshops');
+    workshops.value = await res.json();
+  };
 
   return (
     <div class="container mx-auto px-4 py-8">
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-clay-900 mb-4">Workshop Management</h1>
       </div>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+        <div class="px-6 py-4 border-b border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-900">{editingId.value ? 'Edit Workshop' : 'Add Workshop'}</h3>
+        </div>
+        <form class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit$={handleSubmit}>
+          <input name="title" value={form.value.title || ''} onInput$={handleInput} placeholder="Title" class="border p-2 rounded" required />
+          <input name="date" value={form.value.date || ''} onInput$={handleInput} placeholder="Date" class="border p-2 rounded" required />
+          <input name="duration" value={form.value.duration || ''} onInput$={handleInput} placeholder="Duration" class="border p-2 rounded" />
+          <input name="price" value={form.value.price || ''} onInput$={handleInput} placeholder="Price" class="border p-2 rounded" />
+          <input name="image" value={form.value.image || ''} onInput$={handleInput} placeholder="Image URL" class="border p-2 rounded" />
+          <input name="instructor" value={form.value.instructor || ''} onInput$={handleInput} placeholder="Instructor" class="border p-2 rounded" />
+          <input name="spots" type="number" value={form.value.spots || ''} onInput$={handleInput} placeholder="Spots" class="border p-2 rounded" />
+          <select name="level" value={form.value.level || ''} onInput$={handleInput} class="border p-2 rounded">
+            <option value="">Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+          <textarea name="description" value={form.value.description || ''} onInput$={handleInput} placeholder="Description" class="border p-2 rounded md:col-span-2" />
+          <div class="md:col-span-2 flex gap-2">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">{editingId.value ? 'Update' : 'Add'}</button>
+            {editingId.value && (
+              <button type="button" class="bg-gray-400 text-white px-4 py-2 rounded" onClick$={() => { editingId.value = null; form.value = {}; }}>Cancel</button>
+            )}
+          </div>
+        </form>
+      </div>
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
           <h3 class="text-lg font-semibold text-gray-900">Current Workshops</h3>
         </div>
-        {workshops.value.length === 0 ? (
+        {loading.value ? (
+          <div class="p-8 text-center text-gray-500">Loading...</div>
+        ) : error.value ? (
+          <div class="p-8 text-center text-red-500">{error.value}</div>
+        ) : workshops.value.length === 0 ? (
           <div class="p-8 text-center text-gray-500">
             <p>No workshops found.</p>
           </div>
@@ -91,6 +125,7 @@ export default component$(() => {
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Level</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spots</th>
                   <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
@@ -120,6 +155,10 @@ export default component$(() => {
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{workshop.spots}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{workshop.price}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
+                      <button class="text-blue-600 hover:underline" onClick$={() => handleEdit(workshop)}>Edit</button>
+                      <button class="text-red-600 hover:underline" onClick$={() => handleDelete(String(workshop.id))}>Delete</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
