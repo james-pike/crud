@@ -130,7 +130,7 @@ export default component$(() => {
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
                 {workshops.value.map((workshop) => (
-                  <tr key={workshop.id} class="hover:bg-gray-50">
+                  <tr key={workshop.id} class={editingId.value === String(workshop.id) ? 'bg-blue-50' : 'hover:bg-gray-50'}>
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 h-10 w-10">
@@ -156,8 +156,22 @@ export default component$(() => {
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{workshop.spots}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{workshop.price}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
-                      <button class="text-blue-600 hover:underline" onClick$={() => handleEdit(workshop)}>Edit</button>
-                      <button class="text-red-600 hover:underline" onClick$={() => handleDelete(String(workshop.id))}>Delete</button>
+                      <button
+                        class="text-blue-600 hover:underline mr-2"
+                        onClick$={() => handleEdit(workshop)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        class="text-red-600 hover:underline"
+                        onClick$={$(() => {
+                          if (confirm('Are you sure you want to delete this workshop?')) {
+                            handleDelete(String(workshop.id));
+                          }
+                        })}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

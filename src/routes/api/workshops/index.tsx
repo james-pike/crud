@@ -1,6 +1,13 @@
 import { type RequestHandler } from '@builder.io/qwik-city';
 import { createClient } from '@libsql/client';
 
+console.log('TURSO_DATABASE_URL:', process.env.TURSO_DATABASE_URL);
+console.log('TURSO_AUTH_TOKEN:', process.env.TURSO_AUTH_TOKEN);
+
+if (!process.env.TURSO_DATABASE_URL) {
+  throw new Error('TURSO_DATABASE_URL is not set. Please check your environment variables.');
+}
+
 const db = createClient({
   url: process.env.TURSO_DATABASE_URL!,
   authToken: process.env.TURSO_AUTH_TOKEN,
