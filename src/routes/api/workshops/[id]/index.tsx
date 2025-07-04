@@ -61,7 +61,7 @@ export const useDeleteWorkshop = routeAction$(async (form: any) => {
   return { success: true };
 });
 
-// HTTP method handlers for direct API calls
+// HTTP method handlers for direct API callss
 export const onRequest = async ({ params, method, request, send }) => {
   const id = parseInt(params.id);
   
