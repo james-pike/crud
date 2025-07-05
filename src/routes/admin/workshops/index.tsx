@@ -31,17 +31,17 @@ export default component$(() => {
   // Create or update workshop
   const handleSubmit = $(async (e: any) => {
     e.preventDefault();
-    console.log('Form submitted!', form.value);
+    let res;
     if (editingId.value) {
       // Update
-      await fetch('/api/workshops', {
+      res = await fetch('/api/workshops', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form.value, id: editingId.value }),
       });
     } else {
-      // Creates
-      await fetch('/api/workshops', {
+      // Create
+      res = await fetch('/api/workshops', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form.value, id: crypto.randomUUID() }),
@@ -49,9 +49,8 @@ export default component$(() => {
     }
     editingId.value = null;
     form.value = {};
-    // Refresh list
-    const res = await fetch('/api/workshops');
-    workshops.value = await res.json();
+    // Use API response for updated list
+    workshops.value = [...(await res.json())];
   });
 
   // Edit workshop
@@ -62,13 +61,12 @@ export default component$(() => {
 
   // Delete workshop
   const handleDelete = $(async (id: string) => {
-    await fetch('/api/workshops', {
+    const res = await fetch('/api/workshops', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
     });
-    // Refresh list and force UI update
-    const res = await fetch('/api/workshops');
+    // Use API response for updated list
     workshops.value = [...(await res.json())];
   });
 
