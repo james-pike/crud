@@ -46,3 +46,6 @@ tmp
 
 # Data files
 /data
+
+# Vercel
+.vercel
