@@ -15,7 +15,8 @@ const db = createClient({
 
 ///
 
-export const onGet: RequestHandler = async ({ json }) => {
+export const onGet: RequestHandler = async ({ json, headers }) => {
+  headers.set('Cache-Control', 'no-store');
   try {
     const result = await db.execute('SELECT * FROM workshops');
     json(200, result.rows);
@@ -24,7 +25,8 @@ export const onGet: RequestHandler = async ({ json }) => {
   }
 };
 
-export const onPost: RequestHandler = async ({ request, json }) => {
+export const onPost: RequestHandler = async ({ request, json, headers }) => {
+  headers.set('Cache-Control', 'no-store');
   try {
     const {
       id, title, description, date, duration, price, image, instructor, spots, level
@@ -44,7 +46,8 @@ export const onPost: RequestHandler = async ({ request, json }) => {
   }
 };
 
-export const onPut: RequestHandler = async ({ request, json }) => {
+export const onPut: RequestHandler = async ({ request, json, headers }) => {
+  headers.set('Cache-Control', 'no-store');
   try {
     const {
       id, title, description, date, duration, price, image, instructor, spots, level
@@ -67,7 +70,8 @@ export const onPut: RequestHandler = async ({ request, json }) => {
   }
 };
 
-export const onDelete: RequestHandler = async ({ request, json }) => {
+export const onDelete: RequestHandler = async ({ request, json, headers }) => {
+  headers.set('Cache-Control', 'no-store');
   try {
     const { id } = await request.json();
     await db.execute({
