@@ -40,7 +40,7 @@ export default component$(() => {
         body: JSON.stringify({ ...form.value, id: editingId.value }),
       });
     } else {
-      // Create
+      // Creates
       await fetch('/api/workshops', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
