@@ -16,6 +16,7 @@ const db = createClient({
 ///
 
 export const onGet: RequestHandler = async ({ json }) => {
+  console.log('GET /api/workshops called');
   const result = await db.execute('SELECT * FROM workshops');
   json(200, result.rows);
 };
@@ -30,12 +31,25 @@ export const onPost: RequestHandler = async ({ request, json }) => {
 };
 
 export const onPut: RequestHandler = async ({ request, json }) => {
-  const { id, title, description, date } = await request.json();
-  await db.execute({
-    sql: 'UPDATE workshops SET title = ?, description = ?, date = ? WHERE id = ?',
-    args: [title, description, date, id],
-  });
-  json(200, { success: true });
+  try {
+    const {
+      id, title, description, date, duration, price, image, instructor, spots, level
+    } = await request.json();
+    console.log('PUT /api/workshops id:', id, typeof id);
+    const result = await db.execute({
+      sql: `
+        UPDATE workshops
+        SET title = ?, description = ?, date = ?, duration = ?, price = ?, image = ?, instructor = ?, spots = ?, level = ?
+        WHERE id = ?
+      `,
+      args: [title, description, date, duration, price, image, instructor, spots, level, id],
+    });
+    console.log('PUT /api/workshops result:', result);
+    json(200, { success: true });
+  } catch (e: any) {
+    console.error('PUT /api/workshops error:', e);
+    json(500, { success: false, error: e.message });
+  }
 };
 
 export const onDelete: RequestHandler = async ({ request, json }) => {

@@ -31,6 +31,7 @@ export default component$(() => {
   // Create or update workshop
   const handleSubmit = $(async (e: any) => {
     e.preventDefault();
+    console.log('Form submitted!', form.value);
     if (editingId.value) {
       // Update
       await fetch('/api/workshops', {
@@ -66,9 +67,9 @@ export default component$(() => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id }),
     });
-    // Refresh list
+    // Refresh list and force UI update
     const res = await fetch('/api/workshops');
-    workshops.value = await res.json();
+    workshops.value = [...(await res.json())];
   });
 
   return (
